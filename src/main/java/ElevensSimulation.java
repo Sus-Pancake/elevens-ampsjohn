@@ -26,11 +26,6 @@ public class ElevensSimulation {
 			if (I_AM_DEBUGGING) {
 				System.out.println(board);
 			}
-			while (board.playIfPossible()) {
-				if (I_AM_DEBUGGING) {
-					System.out.println(board);
-				}
-			}
 			if (board.gameIsWon()) {
 				wins++;
 			}

@@ -24,18 +24,28 @@ public class DeckTester {
 		Deck deck1 = new Deck(ranks, suits, pointValues);
 
 		// print the deck
+		System.out.println(deck1);
 
 		// is it empty? (it's not)
+		System.out.println("Is the deck empty? " + deck1.isEmpty());
 
 		// what's the size? 
+		System.out.println("Size of deck? " + deck1.size());
 
 		// deal all the cards 
+		int size = deck1.size();
+		for(int i = 0; i < size; i++) {
+			System.out.println("Dealt: " + deck1.deal());
+		}
 
 		// check if it's empty again (it should be)
+		System.out.println("Is the deck empty? " + deck1.isEmpty());
 
 		// shuffle the deck
+		deck1.shuffle();
 
 		// print the deck
+		System.out.println(deck1);
 
 	}
 }

@@ -31,6 +31,16 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new ArrayList<Card>();
+		// first we loop through the suits
+		for (int i = 0; i < suits.length; i++) {
+			// then loop through ranks and values
+			for(int j = 0; j < ranks.length; j++) {
+				//create new card with current rank, suit, and value
+				cards.add(new Card(ranks[j], suits[i], values[j]));
+			}
+		}
+		shuffle();
 	}
 
 
@@ -40,6 +50,12 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(size == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -48,6 +64,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
@@ -56,6 +73,18 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		//  count backwards from cards.size() - 1;
+		for(int k = cards.size() - 1; k > 0; k--){
+			// draw a random number from 0 - k
+			int randomMcMan = (int)(Math.random() * (k + 1));
+			//three-part swap using .get and .set
+			Card temperson = cards.get(k);
+			cards.set(k, cards.get(randomMcMan));
+			cards.set(randomMcMan, temperson);
+		}
+
+		// reset the size of the deck
+		size = cards.size();
 	}
 
 	/**
@@ -65,6 +94,15 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		// TODO: if the deck is empty, return null
+		// otherwise, decrement the size of the deck and return the card at that index
+		if(isEmpty()) {
+			return null;
+		}
+		else {
+			size--;
+			return cards.get(size);
+		}
 	}
 
 	/**

@@ -7,7 +7,7 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 3;
 
 
 	/**
@@ -17,7 +17,7 @@ public class Shuffler {
 	public static void main(String[] args) {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3};
+		int[] values1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			perfectShuffle(values1);
 			System.out.print("  " + j + ":");
@@ -30,7 +30,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -51,6 +51,32 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		// we create a new array of the same length as values
+		int[] newArray = new int[values.length];
+		// start an unshuffled counter at 0
+		int unshuffledCounter = 0;
+		// note the midpoint
+		int midpoint = values.length/2;
+		// loop through the first half of the values array
+		for(int i = 0; i < midpoint; i++){
+			// set newArray[unshuffled to values[i]
+			newArray[unshuffledCounter] = values[i];
+			// increment the unshuffled counter by 2
+			unshuffledCounter += 2;
+		}
+		// reset the unshuffled counter to 1
+		unshuffledCounter = 1;
+		// loop through the second half of the values array
+		for(int i = midpoint; i < values.length; i++){
+			// set newArray[unshuffled to values[i]
+			newArray[unshuffledCounter] = values[i];
+			// increment the unshuffled counter by 2
+			unshuffledCounter += 2;
+		}
+		// copy the values from newArray to values
+		for(int i = 0; i < values.length; i++){
+			values[i] = newArray[i];
+		}
 	}
 
 	/**
@@ -66,5 +92,14 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		// start a for loop that goes in reverse
+		for(int k = values.length - 1; k > 0; k--){
+			// draw a random number from 0 - k
+			int randomMcMan = (int)(Math.random() * (k + 1));
+			//three part swap
+			int temperson = values[randomMcMan];
+			values[randomMcMan] = values[k];
+			values[k] = temperson;
+		}
 	}
 }
